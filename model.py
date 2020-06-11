@@ -9,6 +9,8 @@ def transform_glove_embeddings(glove_file):
     glove2word2vec(glove_input_file=glove_file, word2vec_output_file="data/w2v_embeddings.txt")
 
 
+# credit for loading the embeddings:
+# https://github.com/ciwin/Intent_Classification/blob/master/Intent_classification_01.ipynb
 def get_embeddings(filename):
     embeddings_index = {}
     dim = None
