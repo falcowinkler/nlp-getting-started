@@ -15,10 +15,10 @@ def download_from_kaggle():
     return 'data/train.csv'
 
 
-def download_word_vectors(filename):
-    target_path = f"data/{filename}"
+def download_word_vectors():
+    target_path = "data/word_vectors"
     if not os.path.exists(target_path):
-        kaggle.api.dataset_download_file("rtatman/glove-global-vectors-for-word-representation",
-                                         file_name=filename,
-                                         path=target_path)
+        kaggle.api.dataset_download_files("rtatman/glove-global-vectors-for-word-representation",
+                                          path=target_path,
+                                          unzip=True)
     return target_path

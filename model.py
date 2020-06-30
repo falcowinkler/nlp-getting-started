@@ -1,3 +1,4 @@
+import nltk
 from gensim.scripts.glove2word2vec import glove2word2vec
 import numpy as np
 from keras.models import Sequential, load_model
@@ -26,13 +27,13 @@ def get_embeddings(filename):
     return embeddings_index, dim
 
 
-def create_embeddings_for_vocabulary(tokenizer, embeddings_index, embedding_dim):
-    word_index = tokenizer.word_index
+def create_embeddings_for_vocabulary(word_index, embeddings_index, embedding_dim):
+    word_index = word_index.word_index
+    # words not found in embedding index will be initialized randomly.
     embedding_matrix = np.random.uniform(-1, 1, (len(word_index) + 1, embedding_dim))
     for word, i in word_index.items():
         embedding_vector = embeddings_index.get(word)
         if embedding_vector is not None:
-            # words not found in embedding index will be initialized randomly.
             embedding_matrix[i] = embedding_vector
         else:
             print("Not in vacabulary: ", word)
@@ -43,8 +44,7 @@ def create_model(embeddings_matrix, vocab_size, embedding_dim, max_sent_length):
     model = Sequential()
     model.add(Embedding(vocab_size, embedding_dim, weights=[embeddings_matrix], input_length=max_sent_length,
                         trainable=True))
-    model.add(Bidirectional(LSTM(128)))
-    model.add(Dense(32, activation="relu"))
+    model.add(Bidirectional(LSTM(4)))  # best performance with a tiny encoding size!
     model.add(Dropout(0.5))
     model.add(Dense(1, activation="sigmoid"))
     model.compile(loss="binary_crossentropy", optimizer="adam", metrics=["accuracy"])
