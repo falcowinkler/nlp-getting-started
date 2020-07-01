@@ -7,7 +7,11 @@ Idea:
 - Feed the embeddings into a bidirectional LSTM
 - Compute output by concatenating the architecture with a dense layer
 
-Performance is about the same as logistic regression.. for now
+Validation score on kaggle is around .7 ~ .78
+
+Credits for the hyperparameters go to https://www.kaggle.com/shahules/basic-eda-cleaning-and-glove
+
+Credits for the code to load glove embeddings: https://github.com/ciwin/Intent_Classification
 
 ### Run
 

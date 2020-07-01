@@ -8,4 +8,4 @@ def load_dataset(path):
 
 
 def train_test_split(features, labels):
-    return ms.train_test_split(features, labels, test_size=0.01, random_state=42, shuffle=True)
+    return ms.train_test_split(features, labels, test_size=0.15, random_state=42, shuffle=True)
