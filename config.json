@@ -1,7 +1,7 @@
 {
-  "batch_size": 128,
+  "batch_size": 4,
   "max_sentence_length": 50,
   "model_path": "saved_models/nlp_classifier_word2vec.h5",
   "pretrained_embeddings": "glove.6B.50d",
-  "episodes": 10
+  "episodes": 15
 }
